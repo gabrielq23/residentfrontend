@@ -8,12 +8,32 @@ function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    // NO CODE IMPLEMENTED FOR API LOGIN, JUST NAVIGATES TO MAIN PAGE FOR NOW
-    navigate('/main');
     /*
-    
+    try {
+      const response = await fetch('api link here', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Login Successful
+        console.log('Login successful', data);
+        navigate('/main'); // Redirect to main page on successful login
+      } else {
+        // Login Failed
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
     */
+   // NAVIGATES TO MAIN PAGE WHEN LOGIN CLICKED FOR NOW
+    navigate('/main');
   };
 
   return (

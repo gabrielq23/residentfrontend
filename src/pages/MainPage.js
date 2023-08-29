@@ -19,17 +19,24 @@ function MainPage() {
     setSearchTerm(event.target.value);
   };
 
+  /*
+  useEffect(() => {
+    axios.get('api link here') 
+      .then(response => {
+        setPeople(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+  */
+
   const filteredPeople = listOfPeople.filter(
     (person) =>
       person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       person.preference.toLowerCase().includes(searchTerm.toLowerCase()) ||
       person.birthYear.toString().includes(searchTerm)
   );
-
-  // IMPLEMENT LIST CREATION HERE (PULL FROM JSON)
-  /*
-
-  */
 
   // PLACEHOLDER CODE FOR VIEWING PROFILE
   const viewProfile = (personId) => {
