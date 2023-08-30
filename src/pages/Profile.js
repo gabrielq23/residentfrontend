@@ -14,15 +14,15 @@ function Profile() {
     <div className="profile-page">
       <button className="back-button" onClick={handleBack}>Return</button>
 
-      {/*BUTTON TO EDIT PROFILE HERE*/}
+      {/* BUTTON TO EDIT PROFILE HERE */}
       <button>Edit Profile (NOT IMPLEMENTED)</button>
 
-      {/*BUTTON TO ADD PREFERENCES HERE*/}
+      {/* BUTTON TO ADD PREFERENCES HERE */}
       <button>Add Preference (NOT IMPLEMENTED)</button>
 
       <h1>Resident: {person.name}</h1>
       <p>Name: {person.name}</p>
-      <p>Preference: {person.preference}</p>
+      <p>Preferences: {person.preferences ? person.preferences.join(', ') : 'No preferences'}</p>
       <p>Birth Year: {person.birthYear}</p>
       <p>Bio: NOT IMPLEMENTED</p>
     </div>

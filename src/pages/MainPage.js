@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 // HARDCODED A LIST OF PEOPLE TO TEST OUT FIRST
 const listOfPeople = [
-  { id: 1, name: 'John', preference: 'Food', birthYear: 1940},
-  { id: 2, name: 'Alice', preference: 'Sport', birthYear: 1967},
-  { id: 3, name: 'Bob', preference: 'Leisure', birthYear: 1987},
-  { id: 4, name: 'Jack', preference: 'Food', birthYear: 1956},
-  { id: 5, name: 'Sam', preference: 'Sport', birthYear: 1955},
-  { id: 6, name: 'Max', preference: 'Sport', birthYear: 1964},
+  { id: 1, name: 'John', preferences: ['Food', 'Music'], birthYear: 1940 },
+  { id: 2, name: 'Alice', preferences: ['Sport', 'Travel'], birthYear: 1967 },
+  { id: 3, name: 'Bob', preferences: ['Leisure', 'Travel'], birthYear: 1987},
+  { id: 4, name: 'Jack', preferences: ['Food', 'Sport'], birthYear: 1956},
+  { id: 5, name: 'Sam', preferences: ['Sport'], birthYear: 1955},
+  { id: 6, name: 'Max', preferences: ['Sport'], birthYear: 1964},
 ];
 
 function MainPage() {
@@ -19,6 +19,7 @@ function MainPage() {
     setSearchTerm(event.target.value);
   };
 
+  // placeholder code for reading api
   /*
   useEffect(() => {
     axios.get('api link here') 
@@ -31,14 +32,18 @@ function MainPage() {
   }, []);
   */
 
-  const filteredPeople = listOfPeople.filter(
-    (person) =>
-      person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.preference.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredPeople = listOfPeople.filter((person) => {
+    const searchTermLower = searchTerm.toLowerCase();
+    return (
+      person.name.toLowerCase().includes(searchTermLower) ||
+      (person.preferences && person.preferences.some((preference) =>
+        preference.toLowerCase().includes(searchTermLower)
+      )) ||
       person.birthYear.toString().includes(searchTerm)
-  );
+    );
+  });
 
-  // PLACEHOLDER CODE FOR VIEWING PROFILE
+  // placeholder code for viewing profile
   const viewProfile = (personId) => {
     const person = listOfPeople.find((person) => person.id === personId);
     navigate(`/profile/${personId}`, { state: { person } });
@@ -62,7 +67,7 @@ function MainPage() {
         {filteredPeople.map((person) => (
           <div className="person-card" key={person.id}>
             <h2>{person.name}</h2>
-            <p><strong>Preference:</strong> {person.preference}</p>
+            <p><strong>Preferences:</strong> {person.preferences ? person.preferences.join(', ') : 'No preferences'}</p>
             <p><strong>Birth Year:</strong> {person.birthYear}</p>
             <button onClick={() => viewProfile(person.id)}>View Profile</button>
           </div>
